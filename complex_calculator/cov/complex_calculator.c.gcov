@@ -1,0 +1,115 @@
+        -:    0:Source:src/complex_calculator.c
+        -:    0:Programs:3
+        -:    1:/**
+        -:    2: * @file complex_calculator.c
+        -:    3: * @author your name (you@domain.com)
+        -:    4: * @brief Source code for complex calculator
+        -:    5: * @version 0.1
+        -:    6: * @date 2021-03-24
+        -:    7: * 
+        -:    8: * @copyright Copyright (c) 2021
+        -:    9: * 
+        -:   10: */
+        -:   11:
+        -:   12:#include <stdlib.h>
+        -:   13:#include "complex_calculator.h"
+        -:   14:
+        -:   15:/**
+        -:   16: * @brief Complex sum function
+        -:   17: * 
+        -:   18: * @param cnum1 
+        -:   19: * @param cnum2 
+        -:   20: * @param csum 
+        -:   21: * @return error_t 
+        -:   22: */
+        4:   23:error_t complex_sum(complex_t* cnum1, complex_t* cnum2, complex_t* csum)
+        -:   24:{
+        4:   25:    if(NULL == cnum1 || NULL == cnum2)
+    #####:   26:        return ERROR_NULL_PTR;
+        -:   27:    
+        -:   28:    
+        4:   29:    csum->real = cnum1->real + cnum2->real;
+        4:   30:    csum->imaginary = cnum1->imaginary + cnum2->imaginary;
+        -:   31:
+        4:   32:    return SUCCESS;
+        -:   33:
+        -:   34:}
+        -:   35:/**
+        -:   36: * @brief complex difference function
+        -:   37: * 
+        -:   38: * @param cnum1 
+        -:   39: * @param cnum2 
+        -:   40: * @param cdiff 
+        -:   41: * @return error_t 
+        -:   42: */
+        4:   43:error_t complex_diff(complex_t* cnum1, complex_t* cnum2, complex_t* cdiff)
+        -:   44:{
+        4:   45:    if(NULL == cnum1 || NULL == cnum2)
+    #####:   46:        return ERROR_NULL_PTR;
+        -:   47:    
+        -:   48:    
+        4:   49:    cdiff->real = cnum1->real - cnum2->real;
+        4:   50:    cdiff->imaginary = cnum1->imaginary - cnum2->imaginary;
+        -:   51:
+        4:   52:    return SUCCESS;
+        -:   53:
+        -:   54:}
+        -:   55:
+        -:   56:/**
+        -:   57: * @brief complex product function
+        -:   58: * 
+        -:   59: * @param cnum1 
+        -:   60: * @param cnum2 
+        -:   61: * @param cprod 
+        -:   62: * @return error_t 
+        -:   63: */
+        4:   64:error_t complex_prod(complex_t* cnum1, complex_t* cnum2, complex_t* cprod)
+        -:   65:{
+        4:   66:    if(NULL == cnum1 || NULL == cnum2)
+    #####:   67:        return ERROR_NULL_PTR;
+        -:   68:    
+        -:   69:    
+        4:   70:    cprod->real = (cnum1->real*cnum2->real) - (cnum1->imaginary*cnum2->imaginary);
+        4:   71:    cprod->imaginary = (cnum1->imaginary*cnum2->real)+(cnum1->real*cnum2->imaginary);
+        -:   72:
+        4:   73:    return SUCCESS;
+        -:   74:
+        -:   75:}
+        -:   76:
+        -:   77:/**
+        -:   78: * @brief  complex division function
+        -:   79: * 
+        -:   80: * @param cnum1 
+        -:   81: * @param cnum2 
+        -:   82: * @param cdiv 
+        -:   83: * @return error_t 
+        -:   84: */
+        4:   85:error_t complex_div(complex_t* cnum1, complex_t* cnum2, complex_t* cdiv)
+        -:   86:{
+        4:   87:    if(NULL == cnum1 || NULL == cnum2)
+    #####:   88:        return ERROR_NULL_PTR;
+        -:   89:
+        -:   90:    /**
+        -:   91:     * @brief Construct a new if object to check if the real and imaginary part of second complex number is equal to 0
+        -:   92:     * 
+        -:   93:     * @param real 
+        -:   94:     */
+        4:   95:    if((cnum2->real==0) && (cnum2->real==0)){
+        1:   96:        cdiv->real = 0;
+        1:   97:        cdiv->imaginary = 0;
+        -:   98:    }
+        -:   99:    /**
+        -:  100:     * @brief if the real and imaginary part of second complex number are not equal to zero, we check the denominator of rationalization is equal to zero.
+        -:  101:     * 
+        -:  102:     */
+        3:  103:    else if(((cnum2->real)*(cnum2->real) + (cnum2->imaginary)*(cnum2->imaginary))== 0){
+    #####:  104:        cdiv->real = 0;
+    #####:  105:        cdiv->imaginary = 0;
+        -:  106:    }
+        -:  107:    else{
+        3:  108:    cdiv->real = ((cnum1->real*cnum2->real) + (cnum1->imaginary*cnum2->imaginary))/((cnum2->real)*(cnum2->real) + (cnum2->imaginary)*(cnum2->imaginary));
+        3:  109:    cdiv->imaginary = ((cnum1->real*(-cnum2->imaginary)) + (cnum1->imaginary*cnum2->imaginary))/((cnum2->real)*(cnum2->real) + (cnum2->imaginary)*(cnum2->imaginary));
+        -:  110:    }
+        4:  111:    return SUCCESS;
+        -:  112:
+        -:  113:}
