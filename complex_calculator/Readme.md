@@ -34,7 +34,6 @@ typedef struct complex_t {
 
 ## Solutions
 
-* By [Hemanth A - 256889](https://github.com/hemanth-asapu/demoproj1/tree/main/complex_calculator)
 
 
 ​
